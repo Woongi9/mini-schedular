@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 
-class HelloResponseDtoTest {
+class HelloResponseDTOTest {
 
     @Test
     public void lombok_test() {
@@ -15,7 +15,7 @@ class HelloResponseDtoTest {
         int amount = 1000;
 
         //when
-        HelloResponseDto dto = new HelloResponseDto(name, amount);
+        HelloResponseDTO dto = new HelloResponseDTO(name, amount);
 
         //then
         assertThat(dto.getName()).isEqualTo(name);

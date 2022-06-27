@@ -22,16 +22,24 @@ public class Posts {
     private String content;
 
     @Column
-    private LocalDateTime startDate;
+    private LocalDateTime startDateTime;
 
     @Column
-    private LocalDateTime endDate;
+    private LocalDateTime endDateTime;
 
     @Builder
     public Posts(String title, String content, LocalDateTime startDate, LocalDateTime endDate) {
         this.title = title;
         this.content = content;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDate;
+        this.endDateTime = endDate;
+    }
+
+    public void update(String title, String content, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        this.title = title;
+        this.content = content;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+
     }
 }
