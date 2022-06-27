@@ -1,4 +1,4 @@
-package com.woongi9.web.service.domain.posts;
+package com.woongi9.scheduler.domain.posts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

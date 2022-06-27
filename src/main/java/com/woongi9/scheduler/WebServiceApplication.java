@@ -1,4 +1,4 @@
-package com.woongi9.web.service;
+package com.woongi9.scheduler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

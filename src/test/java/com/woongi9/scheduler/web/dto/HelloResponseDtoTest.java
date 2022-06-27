@@ -1,10 +1,8 @@
-package com.woongi9.web.service.web.dto;
+package com.woongi9.scheduler.web.dto;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 class HelloResponseDtoTest {

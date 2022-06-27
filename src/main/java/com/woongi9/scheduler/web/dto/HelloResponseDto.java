@@ -1,4 +1,4 @@
-package com.woongi9.web.service.web.dto;
+package com.woongi9.scheduler.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

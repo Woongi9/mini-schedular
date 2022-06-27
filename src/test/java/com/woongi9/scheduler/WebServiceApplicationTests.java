@@ -1,4 +1,4 @@
-package com.woongi9.web.service;
+package com.woongi9.scheduler;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

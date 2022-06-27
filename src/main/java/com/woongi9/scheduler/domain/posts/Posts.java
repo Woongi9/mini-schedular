@@ -1,4 +1,4 @@
-package com.woongi9.web.service.domain.posts;
+package com.woongi9.scheduler.domain.posts;
 
 import lombok.Builder;
 import lombok.Getter;
