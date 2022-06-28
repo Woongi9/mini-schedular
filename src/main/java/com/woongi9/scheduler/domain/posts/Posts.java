@@ -21,6 +21,9 @@ public class Posts {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+//    @Column
+//    private int score;
+
     @Column
     private LocalDateTime startDateTime;
 
@@ -33,6 +36,7 @@ public class Posts {
         this.content = content;
         this.startDateTime = startDate;
         this.endDateTime = endDate;
+//        this.score = score;
     }
 
     public void update(String title, String content, LocalDateTime startDateTime, LocalDateTime endDateTime) {
@@ -40,6 +44,6 @@ public class Posts {
         this.content = content;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-
+//        this.score = score;
     }
 }

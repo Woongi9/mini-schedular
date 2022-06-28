@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">시간순 일정
+            <span>
+                <a th:href="@{/calender/register}">
+                    <button type="button" class="btn btn-success">일정 등록</button>
+                </a>
+            </span>
+        </h1>
+
+    </th:block>
+
+</th:block>
