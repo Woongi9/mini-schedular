@@ -9,8 +9,10 @@ import java.time.LocalDateTime;
 @Getter
 public class PostsResponseDTO {
     private Long id;
+    private int UserID;
     private String title;
     private String content;
+    private int score;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 

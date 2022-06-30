@@ -9,15 +9,19 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PostsUpdateRequestDTO {
+    private int userID;
     private String title;
     private String content;
+    private int score;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 
     @Builder
-    public PostsUpdateRequestDTO(String title, String content, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public PostsUpdateRequestDTO(int userID, String title, String content, int score, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        this.userID = userID;
         this.title = title;
         this.content = content;
+        this.score = score;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
     }

@@ -21,8 +21,11 @@ public class Posts {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-//    @Column
-//    private int score;
+    @Column
+    private int UserID;
+
+    @Column
+    private int score;
 
     @Column
     private LocalDateTime startDateTime;
@@ -31,19 +34,21 @@ public class Posts {
     private LocalDateTime endDateTime;
 
     @Builder
-    public Posts(String title, String content, LocalDateTime startDate, LocalDateTime endDate) {
+    public Posts(int userID, String title, String content, int score, LocalDateTime startDate, LocalDateTime endDate) {
+        this.UserID = userID;
         this.title = title;
         this.content = content;
         this.startDateTime = startDate;
         this.endDateTime = endDate;
-//        this.score = score;
+        this.score = score;
     }
 
-    public void update(String title, String content, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public void update(int userID, String title, String content, int score, LocalDateTime startDate, LocalDateTime endDate) {
+        this.UserID = userID;
         this.title = title;
         this.content = content;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-//        this.score = score;
+        this.startDateTime = startDate;
+        this.endDateTime = endDate;
+        this.score = score;
     }
 }
