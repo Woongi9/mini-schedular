@@ -17,28 +17,6 @@
                 <input type="text" class="form-control" name="content" placeholder="Enter Content">
             </div>
 
-<!--            <div class="calendar">-->
-<!--                <div class="header">-->
-<!--                    <div class="year-month"></div>-->
-<!--                    <div class="nav">-->
-<!--                        <button class="nav-btn go-prev">&lt;</button>-->
-<!--                        <button class="nav-btn go-today">Today</button>-->
-<!--                        <button class="nav-btn go-next">&gt;</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="main">-->
-<!--                    <div class="days">-->
-<!--                        <div class="day">일</div>-->
-<!--                        <div class="day">월</div>-->
-<!--                        <div class="day">화</div>-->
-<!--                        <div class="day">수</div>-->
-<!--                        <div class="day">목</div>-->
-<!--                        <div class="day">금</div>-->
-<!--                        <div class="day">토</div>-->
-<!--                    </div>-->
-<!--                    <div class="dates"></div>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="form-group">
                 <label>시작</label>
                 <p><input type="date"></p>
@@ -49,9 +27,20 @@
                 <p><input type="date"></p>
                 <p><input type="time"></p>
             </div>
+            <button type="cancel" class="btn btn-cancel">취소</button>
             <button type="submit" class="btn btn-primary">등록</button>
 
         </form>
+
+        <script>
+            $(".btn-primary").on("click", function(e){
+
+                e.preventDefault();
+
+                var str = "";
+
+            }
+        </script>
 
     </th:block>
 

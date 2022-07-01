@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PostsUpdateRequestDTO {
-    private int userID;
+    private Long pnum;
+    private Long unum;
     private String title;
     private String content;
     private int score;
@@ -17,8 +18,9 @@ public class PostsUpdateRequestDTO {
     private LocalDateTime endDateTime;
 
     @Builder
-    public PostsUpdateRequestDTO(int userID, String title, String content, int score, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        this.userID = userID;
+    public PostsUpdateRequestDTO(Long pnum, Long unum, String title, String content, int score, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        this.pnum = pnum;
+        this.unum = unum;
         this.title = title;
         this.content = content;
         this.score = score;

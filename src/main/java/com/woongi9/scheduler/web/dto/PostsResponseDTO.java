@@ -8,8 +8,9 @@ import java.time.LocalDateTime;
 
 @Getter
 public class PostsResponseDTO {
-    private Long id;
-    private int UserID;
+    private Long pnum;
+    private Long unum;
+    private int userID;
     private String title;
     private String content;
     private int score;
@@ -17,9 +18,12 @@ public class PostsResponseDTO {
     private LocalDateTime endDateTime;
 
     public PostsResponseDTO(Posts entity) {
-        this.id = entity.getId();
+        this.pnum = entity.getPnum();
+        this.unum = entity.getUnum();
+        this.userID = entity.getUserID();
         this.title = entity.getTitle();
         this.content = entity.getContent();
+        this.score = entity.getScore();
         this.startDateTime = entity.getStartDateTime();
         this.endDateTime = entity.getEndDateTime();
     }

@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PostsSaveRequestDTO {
 
-    private int userID;
+    private Long pnum;
+    private Long unum;
     private int score;
     private String title;
     private String content;
@@ -20,9 +21,10 @@ public class PostsSaveRequestDTO {
     private LocalDateTime endDateTime;
 
     @Builder
-    public PostsSaveRequestDTO(int userID, String title, String content, int score,
+    public PostsSaveRequestDTO(Long pnum, Long unum, String title, String content, int score,
                                LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        this.userID = userID;
+        this.pnum = pnum;
+        this.unum = unum;
         this.title = title;
         this.content = content;
         this.score = score;
@@ -32,7 +34,8 @@ public class PostsSaveRequestDTO {
 
     public Posts toEntity() {
         return Posts.builder()
-                .userID(userID)
+                .pnum(pnum)
+                .unum(unum)
                 .title(title)
                 .content(content)
                 .score(score)

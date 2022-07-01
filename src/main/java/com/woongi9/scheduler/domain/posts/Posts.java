@@ -11,9 +11,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor  //기본 생성자 자동 추가
 @Entity
 public class Posts {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long pnum;
+
+    @Column
+    private Long unum;
 
     @Column(length = 500, nullable = false)
     private String title;
@@ -22,7 +26,7 @@ public class Posts {
     private String content;
 
     @Column
-    private int UserID;
+    private int userID;
 
     @Column
     private int score;
@@ -34,8 +38,9 @@ public class Posts {
     private LocalDateTime endDateTime;
 
     @Builder
-    public Posts(int userID, String title, String content, int score, LocalDateTime startDate, LocalDateTime endDate) {
-        this.UserID = userID;
+    public Posts(Long pnum, Long unum, String title, String content, int score, LocalDateTime startDate, LocalDateTime endDate) {
+        this.pnum = pnum;
+        this.unum = unum;
         this.title = title;
         this.content = content;
         this.startDateTime = startDate;
@@ -43,8 +48,9 @@ public class Posts {
         this.score = score;
     }
 
-    public void update(int userID, String title, String content, int score, LocalDateTime startDate, LocalDateTime endDate) {
-        this.UserID = userID;
+    public void update(Long pnum, Long unum, String title, String content, int score, LocalDateTime startDate, LocalDateTime endDate) {
+        this.pnum = pnum;
+        this.unum = unum;
         this.title = title;
         this.content = content;
         this.startDateTime = startDate;

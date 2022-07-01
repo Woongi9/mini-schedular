@@ -17,13 +17,13 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDTO requestDTO) {
-        return postsRepository.save(requestDTO.toEntity()).getId();
+        return postsRepository.save(requestDTO.toEntity()).getPnum();
     }
 
     @Transactional
     public Long update(Long id, PostsUpdateRequestDTO requestDTO) {
         Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 일정이 없습니다. id = " + id));
-        posts.update(requestDTO.getUserID(), requestDTO.getTitle(), requestDTO.getContent(), requestDTO.getScore(), requestDTO.getStartDateTime(), requestDTO.getEndDateTime());
+        posts.update(requestDTO.getPnum(), requestDTO.getUnum(), requestDTO.getTitle(), requestDTO.getContent(), requestDTO.getScore(), requestDTO.getStartDateTime(), requestDTO.getEndDateTime());
 
         return id;
     }
