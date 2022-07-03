@@ -45,6 +45,9 @@ class PostsApiControllerTest {
         String title = "title";
         String content = "content";
         PostsSaveRequestDTO requestDTO = PostsSaveRequestDTO.builder()
+                .pnum(1L)
+                .unum(1L)
+                .score(5)
                 .title(title)
                 .content(content)
                 .startDateTime(LocalDateTime.of(2022, 6, 30, 12, 0, 0))
@@ -69,26 +72,34 @@ class PostsApiControllerTest {
     public void Posts_수정() throws Exception {
         //given
         Posts savedPosts = postsRepository.save(Posts.builder()
+                .pnum(2L)
+                .unum(2L)
+                .score(5)
                 .title("title")
                 .content("content")
                 .startDate(LocalDateTime.of(2022, 6, 28, 12, 0, 0))
                 .endDate(LocalDateTime.of(2022, 12, 31, 14, 0, 0))
                 .build());
 
-        Long updateId = savedPosts.getId();
+        Long updatePnum = savedPosts.getPnum();
+        Long updateUnum = savedPosts.getUnum();
+        int updateScore = 4;
         String expectedTitle = "title2";
         String expectedContent = "content2";
         LocalDateTime expectedStartTime = LocalDateTime.of(2022, 7, 1, 12, 0, 0);
         LocalDateTime expectedEndTime = LocalDateTime.of(2022, 12, 15, 12, 0, 0);
 
         PostsUpdateRequestDTO requestDTO = PostsUpdateRequestDTO.builder()
+                .pnum(updatePnum)
+                .unum(updateUnum)
+                .score(updateScore)
                 .title(expectedTitle)
                 .content(expectedContent)
                 .startDateTime(expectedStartTime)
                 .endDateTime(expectedEndTime)
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
+        String url = "http://localhost:" + port + "/api/v1/posts/" + updatePnum;
 
         HttpEntity<PostsUpdateRequestDTO> requestEntity = new HttpEntity<>(requestDTO);
 

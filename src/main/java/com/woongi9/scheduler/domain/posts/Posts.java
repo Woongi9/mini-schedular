@@ -19,14 +19,11 @@ public class Posts {
     @Column
     private Long unum;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 30, nullable = true)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = true)
     private String content;
-
-    @Column
-    private int userID;
 
     @Column
     private int score;

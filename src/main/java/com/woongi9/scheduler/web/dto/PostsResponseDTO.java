@@ -20,7 +20,6 @@ public class PostsResponseDTO {
     public PostsResponseDTO(Posts entity) {
         this.pnum = entity.getPnum();
         this.unum = entity.getUnum();
-        this.userID = entity.getUserID();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.score = entity.getScore();

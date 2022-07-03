@@ -30,13 +30,13 @@ public class CalendarController {
     public void register(){
     }
 
-//    @PostMapping("/register")
-//    public String register(PostsSaveRequestDTO postDTO, RedirectAttributes redirectAttributes) {
-//
-//        log.info("postDTO : " + postDTO);
-//
-////        Long pno = postsService.regi
-//    }
+    @PostMapping("/register")
+    public Long register(PostsSaveRequestDTO postDTO, RedirectAttributes redirectAttributes) {
+
+        log.info("postDTO : " + postDTO);
+
+        return postsService.save(postDTO);
+    }
 
     @GetMapping("/calendar")
     public void calendar(){
