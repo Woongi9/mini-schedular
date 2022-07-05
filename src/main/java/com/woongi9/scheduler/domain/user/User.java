@@ -9,7 +9,9 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

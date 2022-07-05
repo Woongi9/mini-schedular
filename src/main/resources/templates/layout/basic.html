@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <th:block th:fragment="setContent(content)">
 
@@ -55,13 +55,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">로그인<span class="sr-only">(current)</span></a>
+<!--                        <a class="nav-link" href="/">로그인<span class="sr-only">(current)</span></a>-->
+                        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
                     </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/register">정보 수정</a>-->
+<!--                    </li>-->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">정보 수정</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">로그아웃</a>
+<!--                        <a class="nav-link" href="/">로그아웃</a>-->
+                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
                     </li>
                 </ul>
             </div>
