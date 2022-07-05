@@ -40,13 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                        .userService(customOAuth2UserService);
 
 
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/h2-console/**").permitAll()
                 .antMatchers("/calendar/timesort", "/calendar/prioritysort", "calendar/calendar",
                         "calendar/events", "calendar/register").hasRole("USER");
 
         http.formLogin().defaultSuccessUrl("/");
-        http.csrf().disable();
         http.logout().logoutSuccessUrl("/");
         http.oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
 
