@@ -7,7 +7,7 @@
 
         <h1 class="mt-4">일정 등록</h1>
 
-        <form th:action="@{/calendar/register}" th:method="post">
+        <form th:action th:method="post">
             <div class="form-group">
                 <label>제목</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력해주세요">
