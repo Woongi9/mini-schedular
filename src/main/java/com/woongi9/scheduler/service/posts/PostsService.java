@@ -23,7 +23,9 @@ public class PostsService {
     @Transactional
     public Long update(Long id, PostsUpdateRequestDTO requestDTO) {
         Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 일정이 없습니다. id = " + id));
-        posts.update(requestDTO.getTitle(), requestDTO.getContent(), requestDTO.getStartDateTime(), requestDTO.getEndDateTime());
+        posts.update(requestDTO.getTitle(), requestDTO.getContent(), requestDTO.getScore(),
+                requestDTO.getStartDate(), requestDTO.getStartTime(),
+                requestDTO.getEndDate(), requestDTO.getEndTime());
 
         return id;
     }

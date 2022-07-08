@@ -48,8 +48,8 @@ class PostsApiControllerTest {
         PostsSaveRequestDTO requestDTO = PostsSaveRequestDTO.builder()
                 .title(title)
                 .content(content)
-                .startDateTime(LocalDateTime.of(2022, 6, 30, 12, 0, 0))
-                .endDateTime(LocalDateTime.of(2022, 7, 28, 14, 0, 0))
+//                .startDateTime(LocalDateTime.of(2022, 6, 30, 12, 0, 0))
+//                .endDateTime(LocalDateTime.of(2022, 7, 28, 14, 0, 0))
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";
@@ -72,8 +72,8 @@ class PostsApiControllerTest {
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
-                .startDate(LocalDateTime.of(2022, 6, 28, 12, 0, 0))
-                .endDate(LocalDateTime.of(2022, 12, 31, 14, 0, 0))
+//                .startDate(LocalDateTime.of(2022, 6, 28, 12, 0, 0))
+//                .endDate(LocalDateTime.of(2022, 12, 31, 14, 0, 0))
                 .build());
 
         Long updateId = savedPosts.getId();
@@ -85,8 +85,8 @@ class PostsApiControllerTest {
         PostsUpdateRequestDTO requestDTO = PostsUpdateRequestDTO.builder()
                 .title(expectedTitle)
                 .content(expectedContent)
-                .startDateTime(expectedStartTime)
-                .endDateTime(expectedEndTime)
+//                .startDateTime(expectedStartTime)
+//                .endDateTime(expectedEndTime)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
@@ -103,7 +103,7 @@ class PostsApiControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
-        assertThat(all.get(0).getStartDateTime()).isEqualTo(expectedStartTime);
-        assertThat(all.get(0).getEndDateTime()).isEqualTo(expectedEndTime);
+//        assertThat(all.get(0).getStartDateTime()).isEqualTo(expectedStartTime);
+//        assertThat(all.get(0).getEndDateTime()).isEqualTo(expectedEndTime);
     }
 }
