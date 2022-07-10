@@ -20,10 +20,10 @@ public class Posts {
     @Column(name = "TITLE", length = 500, nullable = false)
     private String title;
 
-//    @Column(columnDefinition = "TEXT", nullable = false)
-//    private String content;
-    @Column(name = "CONTENT")
+    @Column(name = "CONTENT", columnDefinition = "TEXT", nullable = false)
     private String content;
+//    @Column(name = "CONTENT")
+//    private String content;
 
     @Column(name = "SCORE")
     private int score;

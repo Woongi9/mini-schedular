@@ -30,11 +30,13 @@ public class CalendarController {
     }
 
     @GetMapping("/register")
-    public void register() {
+    public String  register(Model model) {
+        model.addAttribute("postDTO", new PostsSaveRequestDTO());
+        return "/calendar/register";
     }
 
     @PostMapping("/register")
-    public String register(PostsSaveRequestDTO postDTO) {
+    public String register(@Valid PostsSaveRequestDTO postDTO) {
         log.info("postDTO : " + postDTO);
         postsService.save(postDTO);
         return "/calendar/calendar";
