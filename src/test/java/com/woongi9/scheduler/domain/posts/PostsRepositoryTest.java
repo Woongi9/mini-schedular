@@ -30,8 +30,8 @@ class PostsRepositoryTest {
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
-                .startDate(LocalDateTime.of(2022,6,30, 17,00,00 ))
-                .endDate(LocalDateTime.of(2022,7,30, 12,00,00 ))
+//                .startDate(LocalDateTime.of(2022,6,30, 17,00,00 ))
+//                .endDate(LocalDateTime.of(2022,7,30, 12,00,00 ))
                 .build());
 
         //when

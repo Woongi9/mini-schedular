@@ -7,28 +7,79 @@
 
         <h1 class="mt-4">일정 등록</h1>
 
-        <form th:action="@{/calendar/register}" th:method="post">
+        <form>
             <div class="form-group">
-                <label>제목</label>
-                <input type="text" class="form-control" name="title" placeholder="Enter Title">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요">
+<!--                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력해주세요">-->
             </div>
             <div class="form-group">
-                <label>내용</label>
-                <input type="text" class="form-control" name="content" placeholder="Enter Content">
+                <label for="content">내용</label>
+                <input type="text" class="form-control" id="content" placeholder="내용을 입력해주세요">
+<!--                <input type="text" class="form-control" id="content" name="title" placeholder="내용을 입력해주세요">-->
+            </div>
+            <div class="form-group">
+                <label for="score">중요도</label>
+                <input type="text" class="form-control" id="score" placeholder="점수를 입력해주세요">
+<!--                <input type="text" class="form-control" th:field="*{score}" placeholder="점수를 입력해주세요">-->
             </div>
             <div class="form-group">
                 <label>시작</label>
-                <p><input type="date"></p>
-                <p><input type="time"></p>
+                <p><input type="date" id="startDate" name="startDate"></p>
+<!--                <p><input type="date" th:field="*{startDate}"></p>-->
+                <p><input type="time" id="startTime" name="startTime"></p>
+<!--                <p><input type="time" th:field="*{startTime}"></p>-->
             </div>
             <div class="form-group">
                 <label>종료</label>
-                <p><input type="date"></p>
-                <p><input type="time"></p>
+                <p><input type="date" id="endDate" name="endDate"></p>
+<!--                <p><input type="date" th:field="*{endDate}"></p>-->
+                <p><input type="time" id="endTime" name="endTime"></p>
+<!--                <p><input type="time" th:field="*{endTime}"></p>-->
             </div>
-            <button type="submit" class="btn btn-primary">등록</button>
 
         </form>
+
+        <button type="submit" class="btn btn-primary" id="btn-register">등록</button>
+
+        <script>
+
+            var main ={
+                init : function () {
+                    var _this = this;
+                    $('#btn-register').on('click', function (){
+                        _this.save();
+                    })
+                },
+                save : function () {
+                    var data = {
+                        title: $('#title').val(),
+                        content: $('#content').val(),
+                        score: $('#score').val(),
+                        startDate: $('#startDate').val(),
+                        startTime: $('#startTime').val(),
+                        endDate: $('#endDate').val(),
+                        endTime: $('#endTime').val()
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/calendar/register',
+                        dataType: 'json',
+                        contentType:'application/json; charset=utf-8',
+                        data: JSON.stringify(data)
+                    }).done(function(){
+                        alert('일정이 등록되었습니다.');
+                        window.location.href = '/';
+                    }).fail(function (error){
+                        alert(JSON.stringify(error));
+                    });
+                }
+            };
+
+        </script>
+
+
 
     </th:block>
 

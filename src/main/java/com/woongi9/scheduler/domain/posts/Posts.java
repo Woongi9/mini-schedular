@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @NoArgsConstructor  //기본 생성자 자동 추가
@@ -15,35 +17,53 @@ public class Posts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 500, nullable = false)
+    @Column(name = "TITLE", length = 500, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(name = "CONTENT", columnDefinition = "TEXT", nullable = false)
     private String content;
+//    @Column(name = "CONTENT")
+//    private String content;
 
-//    @Column
-//    private int score;
+    @Column(name = "SCORE")
+    private int score;
 
-    @Column
-    private LocalDateTime startDateTime;
+    @Column(name = "START_DATE")
+    private LocalDate startDate;
 
-    @Column
-    private LocalDateTime endDateTime;
+    @Column(name = "START_TIME")
+    private LocalTime startTime;
+
+    @Column(name = "END_DATE")
+    private LocalDate endDate;
+
+    @Column(name = "END_TIME")
+    private LocalTime endTime;
 
     @Builder
-    public Posts(String title, String content, LocalDateTime startDate, LocalDateTime endDate) {
+    public Posts(String title, String content,
+                 int score,
+                 LocalDate startDate, LocalTime startTime,
+                 LocalDate endDate, LocalTime endTime) {
         this.title = title;
         this.content = content;
-        this.startDateTime = startDate;
-        this.endDateTime = endDate;
-//        this.score = score;
+        this.score = score;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
     }
 
-    public void update(String title, String content, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public void update(String title, String content,
+                       int score,
+                       LocalDate startDate, LocalTime startTime,
+                       LocalDate endDate, LocalTime endTime) {
         this.title = title;
         this.content = content;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-//        this.score = score;
+        this.score = score;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
     }
 }
