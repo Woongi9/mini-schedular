@@ -6,48 +6,41 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Controller
-@RequestMapping("/calendar")
-@RequiredArgsConstructor
+//@RequestMapping("/calendar")
 @Log4j2
+@RequiredArgsConstructor
+@RestController
 public class CalendarController {
 
     private final PostsService postsService;
 
-    @GetMapping("/timesort")
+    @GetMapping("/calendar/timesort")
     public void timeSort(){
     }
 
-    @GetMapping("/prioritysort")
-    public void prioritySort(){
+    @GetMapping("/calendar/prioritysort")
+    public void  prioritySort(){
     }
 
-    @GetMapping("/register")
-    public String  register(Model model) {
-        model.addAttribute("postDTO", new PostsSaveRequestDTO());
-        return "/calendar/register";
+    @GetMapping("/calendar/register")
+    public void register() {
     }
 
-    @PostMapping("/register")
-    public String register(@Valid PostsSaveRequestDTO postDTO) {
+    @PostMapping("/calendar/register")
+    public Long register(@RequestBody PostsSaveRequestDTO postDTO) {
         log.info("postDTO : " + postDTO);
-        postsService.save(postDTO);
-        return "/calendar/calendar";
+        return postsService.save(postDTO);
     }
 
-    @GetMapping("/calendar")
+    @GetMapping("/calendar/calendar")
     public void calendar() {
-
     }
 
-    @GetMapping("/events")
+    @GetMapping("/calendar/events")
     public void events(){
     }
 }
