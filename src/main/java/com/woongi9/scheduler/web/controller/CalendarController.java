@@ -15,7 +15,6 @@ import javax.validation.Valid;
 @Log4j2
 @RequiredArgsConstructor
 @Controller
-//@RestController
 public class CalendarController {
 
     private final PostsService postsService;
@@ -27,11 +26,6 @@ public class CalendarController {
     @GetMapping("/prioritysort")
     public void  prioritySort(){
     }
-
-    //Test -> O, html -> X
-//    @GetMapping("/register")
-//    public void register() {
-//    }
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -49,24 +43,8 @@ public class CalendarController {
 
         redirectAttributes.addFlashAttribute("msg", pno);
 
-        return "redirect:/calendar/calendar";
+        return "redirect:/";
     }
-
-//    @GetMapping("/register")
-//    public String register(Model model) {
-//        model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
-//        return "/calendar/register";
-//    }
-//
-//    @PostMapping("/register")
-//    public String  register(@ModelAttribute("postsSaveRequestDTO") PostsSaveRequestDTO postsSaveRequestDTO) {
-//
-//        Long pno = postsService.save(postsSaveRequestDTO);
-//
-//        log.info("PNO : " + pno);
-//
-//        return "redirect:/calendar/calendar";
-//    }
 
     @GetMapping("/calendar")
     public void calendar() {
