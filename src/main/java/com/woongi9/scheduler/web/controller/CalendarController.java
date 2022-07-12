@@ -7,40 +7,72 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-//@RequestMapping("/calendar")
+@RequestMapping("/calendar")
 @Log4j2
 @RequiredArgsConstructor
-@RestController
+@Controller
+//@RestController
 public class CalendarController {
 
     private final PostsService postsService;
 
-    @GetMapping("/calendar/timesort")
+    @GetMapping("/timesort")
     public void timeSort(){
     }
 
-    @GetMapping("/calendar/prioritysort")
+    @GetMapping("/prioritysort")
     public void  prioritySort(){
     }
 
-    @GetMapping("/calendar/register")
-    public void register() {
+    //Test -> O, html -> X
+//    @GetMapping("/register")
+//    public void register() {
+//    }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
+        return "/calendar/register";
     }
 
-    @PostMapping("/calendar/register")
-    public Long register(@RequestBody PostsSaveRequestDTO postDTO) {
+    @PostMapping("/register")
+    public String  register(@RequestBody @Valid PostsSaveRequestDTO postDTO, RedirectAttributes redirectAttributes) {
         log.info("postDTO : " + postDTO);
-        return postsService.save(postDTO);
+
+        Long pno = postsService.save(postDTO);
+
+        log.info("PNO : " + pno);
+
+        redirectAttributes.addFlashAttribute("msg", pno);
+
+        return "redirect:/calendar/calendar";
     }
 
-    @GetMapping("/calendar/calendar")
+//    @GetMapping("/register")
+//    public String register(Model model) {
+//        model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
+//        return "/calendar/register";
+//    }
+//
+//    @PostMapping("/register")
+//    public String  register(@ModelAttribute("postsSaveRequestDTO") PostsSaveRequestDTO postsSaveRequestDTO) {
+//
+//        Long pno = postsService.save(postsSaveRequestDTO);
+//
+//        log.info("PNO : " + pno);
+//
+//        return "redirect:/calendar/calendar";
+//    }
+
+    @GetMapping("/calendar")
     public void calendar() {
     }
 
-    @GetMapping("/calendar/events")
+    @GetMapping("/events")
     public void events(){
     }
 }
