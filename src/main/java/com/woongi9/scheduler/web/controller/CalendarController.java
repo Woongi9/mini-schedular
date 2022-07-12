@@ -1,37 +1,46 @@
 package com.woongi9.scheduler.web.controller;
 
 import com.woongi9.scheduler.service.posts.PostsService;
+import com.woongi9.scheduler.web.dto.PostsSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/calendar")
-@RequiredArgsConstructor
+import javax.validation.Valid;
+
+//@RequestMapping("/calendar")
 @Log4j2
+@RequiredArgsConstructor
+@RestController
 public class CalendarController {
 
     private final PostsService postsService;
 
-    @GetMapping("/timesort")
+    @GetMapping("/calendar/timesort")
     public void timeSort(){
     }
 
-    @GetMapping("/prioritysort")
-    public void prioritySort(){
+    @GetMapping("/calendar/prioritysort")
+    public void  prioritySort(){
     }
 
-    @GetMapping("/register")
-    public void register(){
+    @GetMapping("/calendar/register")
+    public void register() {
     }
 
-    @GetMapping("/calendar")
-    public void calendar(){
+    @PostMapping("/calendar/register")
+    public Long register(@RequestBody PostsSaveRequestDTO postDTO) {
+        log.info("postDTO : " + postDTO);
+        return postsService.save(postDTO);
     }
 
-    @GetMapping("/events")
+    @GetMapping("/calendar/calendar")
+    public void calendar() {
+    }
+
+    @GetMapping("/calendar/events")
     public void events(){
     }
 }
