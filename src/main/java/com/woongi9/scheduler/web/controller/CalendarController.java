@@ -40,7 +40,7 @@ public class CalendarController {
     }
 
     @PostMapping("/register")
-    public String  register(@RequestBody @Valid PostsSaveRequestDTO postDTO, RedirectAttributes redirectAttributes) {
+    public String  register(@RequestBody PostsSaveRequestDTO postDTO, RedirectAttributes redirectAttributes) {
         log.info("postDTO : " + postDTO);
 
         Long pno = postsService.save(postDTO);
@@ -49,24 +49,8 @@ public class CalendarController {
 
         redirectAttributes.addFlashAttribute("msg", pno);
 
-        return "redirect:/calendar/calendar";
+        return "redirect:/";
     }
-
-//    @GetMapping("/register")
-//    public String register(Model model) {
-//        model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
-//        return "/calendar/register";
-//    }
-//
-//    @PostMapping("/register")
-//    public String  register(@ModelAttribute("postsSaveRequestDTO") PostsSaveRequestDTO postsSaveRequestDTO) {
-//
-//        Long pno = postsService.save(postsSaveRequestDTO);
-//
-//        log.info("PNO : " + pno);
-//
-//        return "redirect:/calendar/calendar";
-//    }
 
     @GetMapping("/calendar")
     public void calendar() {
