@@ -14,6 +14,7 @@ public class PostsUpdateRequestDTO {
 
     private String title;
     private String content;
+    private String email;
     private int score;
     private LocalDate startDate;
     private LocalTime startTime;
@@ -22,11 +23,12 @@ public class PostsUpdateRequestDTO {
 
     @Builder
     public PostsUpdateRequestDTO(String title, String content,
-                                 int score,
+                                 String email, int score,
                                  LocalDate startDate, LocalTime startTime,
                                  LocalDate endDate, LocalTime endTime) {
         this.title = title;
         this.content = content;
+        this.email = email;
         this.score = score;
         this.startDate = startDate;
         this.startTime = startTime;

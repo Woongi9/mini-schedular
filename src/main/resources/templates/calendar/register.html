@@ -17,6 +17,10 @@
                 <input type="text" class="form-control" th:field="*{content}" id="content" placeholder="내용을 입력해주세요">
             </div>
             <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="text" th:placeholder="${session.user.email}" th:value="${session.user.email}" class="form-control" id="email" name="email" readonly>
+            </div>
+            <div class="form-group">
                 <label for="score">중요도</label>
                 <input type="text" class="form-control" th:field="*{score}" id="score" placeholder="점수를 입력해주세요">
             </div>
@@ -48,6 +52,7 @@
                     var data = {
                         title: $('#title').val(),
                         content: $('#content').val(),
+                        email: $('#email').val(),
                         score: $('#score').val(),
                         startDate: $('#startDate').val(),
                         startTime: $('#startTime').val(),

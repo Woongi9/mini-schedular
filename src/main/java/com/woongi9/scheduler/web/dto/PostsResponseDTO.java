@@ -12,6 +12,7 @@ public class PostsResponseDTO {
     private Long id;
     private String title;
     private String content;
+    private String email;
     private int score;
     private LocalDate startDate;
     private LocalTime startTime;
@@ -22,6 +23,7 @@ public class PostsResponseDTO {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
+        this.email = entity.getEmail();
         this.score = entity.getScore();
         this.startDate = entity.getStartDate();
         this.startTime = entity.getStartTime();

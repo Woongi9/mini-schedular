@@ -22,8 +22,9 @@ public class Posts {
 
     @Column(name = "CONTENT", columnDefinition = "TEXT", nullable = false)
     private String content;
-//    @Column(name = "CONTENT")
-//    private String content;
+
+    @Column(name = "EMAIL")
+    private String email;
 
     @Column(name = "SCORE")
     private int score;
@@ -42,11 +43,12 @@ public class Posts {
 
     @Builder
     public Posts(String title, String content,
-                 int score,
+                 String email, int score,
                  LocalDate startDate, LocalTime startTime,
                  LocalDate endDate, LocalTime endTime) {
         this.title = title;
         this.content = content;
+        this.email = email;
         this.score = score;
         this.startDate = startDate;
         this.startTime = startTime;
