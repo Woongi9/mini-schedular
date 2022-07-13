@@ -1,5 +1,7 @@
 package com.woongi9.scheduler.web.controller;
 
+import com.woongi9.scheduler.domain.user.User;
+import com.woongi9.scheduler.domain.user.UserRepository;
 import com.woongi9.scheduler.service.posts.PostsService;
 import com.woongi9.scheduler.web.dto.PostsSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import java.util.Optional;
 
 @RequestMapping("/calendar")
 @Log4j2
@@ -18,6 +22,7 @@ import javax.validation.Valid;
 //@RestController
 public class CalendarController {
 
+    private final UserRepository userRepository;
     private final PostsService postsService;
 
     @GetMapping("/timesort")
@@ -28,13 +33,9 @@ public class CalendarController {
     public void  prioritySort(){
     }
 
-    //Test -> O, html -> X
-//    @GetMapping("/register")
-//    public void register() {
-//    }
-
     @GetMapping("/register")
     public String register(Model model) {
+
         model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
         return "/calendar/register";
     }
