@@ -5,6 +5,9 @@ import com.woongi9.scheduler.domain.posts.PostsRepository;
 import com.woongi9.scheduler.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,24 +38,25 @@ public class PostsService {
         return id;
     }
 
-    public PostsResponseDTO findById(Long id) {
-        Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+    public PostsResponseDTO findById(Long pno) {
+        Posts entity = postsRepository.findById(pno).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + pno));
 
         return new PostsResponseDTO(entity);
     }
 
-//    public PageResultDTO<PostsSaveRequestDTO, Object[]> getTimesortList(PageRequestDTO requestDTO) {
-//        log.info("Search Timesort Post Page ...............");
-//
-//        Function<Object[], PostsSaveRequestDTO> fn = (arr -> entitiesToDTO(
-//
-//        ))
-//    }
-
     @Transactional(readOnly = true)
-    public List<PostsResponseDTO> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
+    public List<PostsResponseDTO> findTimesortPage() {
+        return postsRepository.findTimesortPage().stream()
                 .map(PostsResponseDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<PostsResponseDTO> findPriorityPage() {
+        return postsRepository.findPriorityPage().stream()
+                .map(PostsResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
 }

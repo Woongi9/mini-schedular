@@ -13,17 +13,6 @@
             </span>
         </h1>
 
-<!--        <form action="/calendar/timesort" method="get">-->
-<!--            <div class="input-group">-->
-<!--                <input type="hidden" name="page" value="1">-->
-<!--                <div class="input-group-pretend">-->
-<!--                    <select class="custom-select" name="type">-->
-<!--                        <option th:selected="${pageRequestDTO.type == null}">제목</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-
         <table class="table table-horizontal table-boardred">
             <thead class="thead-strong">
             <tr>
@@ -44,7 +33,11 @@
                         [[${dto.pno}]]
                     </a>
                 </th>
-                <td>[[${dto.title}]]</td>
+                <th scope="row">
+                    <a th:href="@{/calendar/read(pno = ${dto.pno})}">
+                        [[${dto.title}]]
+                    </a>
+                </th>
                 <td>[[${dto.content}]]</td>
                 <td>[[${dto.score}]]</td>
                 <td>[[${dto.startDate}]]</td>
