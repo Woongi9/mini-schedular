@@ -3,6 +3,8 @@ package com.woongi9.scheduler.web.controller;
 import com.woongi9.scheduler.domain.user.User;
 import com.woongi9.scheduler.domain.user.UserRepository;
 import com.woongi9.scheduler.service.posts.PostsService;
+import com.woongi9.scheduler.web.dto.PageRequestDTO;
+import com.woongi9.scheduler.web.dto.PostsResponseDTO;
 import com.woongi9.scheduler.web.dto.PostsSaveRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("/calendar")
@@ -26,7 +29,12 @@ public class CalendarController {
     private final PostsService postsService;
 
     @GetMapping("/timesort")
-    public void timeSort(){
+    public void timeSort(PageRequestDTO pageRequestDTO, Model model){
+        log.info("pageRequestDTO : " + pageRequestDTO);
+
+        List<PostsResponseDTO> allDesc = postsService.findAllDesc();
+        log.info("findAllList : " + allDesc);
+        model.addAttribute("result", allDesc);
     }
 
     @GetMapping("/prioritysort")
@@ -37,6 +45,7 @@ public class CalendarController {
     public String register(Model model) {
 
         model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
+
         return "/calendar/register";
     }
 

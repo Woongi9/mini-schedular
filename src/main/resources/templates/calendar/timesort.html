@@ -13,6 +13,50 @@
             </span>
         </h1>
 
+<!--        <form action="/calendar/timesort" method="get">-->
+<!--            <div class="input-group">-->
+<!--                <input type="hidden" name="page" value="1">-->
+<!--                <div class="input-group-pretend">-->
+<!--                    <select class="custom-select" name="type">-->
+<!--                        <option th:selected="${pageRequestDTO.type == null}">제목</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+
+        <table class="table table-horizontal table-boardred">
+            <thead class="thead-strong">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>중요도</th>
+                <th>시작 일</th>
+                <th>시작 시간</th>
+                <th>종료 일</th>
+                <th>종료 시간</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dto : ${result}">
+                <th scope="row">
+                    <a th:href="@{/calendar/read(pno = ${dto.pno})}">
+                        [[${dto.pno}]]
+                    </a>
+                </th>
+                <td>[[${dto.title}]]</td>
+                <td>[[${dto.content}]]</td>
+                <td>[[${dto.score}]]</td>
+                <td>[[${dto.startDate}]]</td>
+                <td>[[${dto.startTime}]]</td>
+                <td>[[${dto.endDate}]]</td>
+                <td>[[${dto.endTime}]]</td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
     </th:block>
 
 </th:block>

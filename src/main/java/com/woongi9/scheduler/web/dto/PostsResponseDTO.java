@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 @Getter
 public class PostsResponseDTO {
-    private Long id;
+    private Long pno;
     private String title;
     private String content;
     private String email;
@@ -20,7 +20,7 @@ public class PostsResponseDTO {
     private LocalTime endTime;
 
     public PostsResponseDTO(Posts entity) {
-        this.id = entity.getId();
+        this.pno = entity.getPno();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.email = entity.getEmail();
