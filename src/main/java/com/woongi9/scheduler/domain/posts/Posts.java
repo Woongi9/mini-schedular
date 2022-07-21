@@ -15,7 +15,7 @@ import java.time.LocalTime;
 public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long pno;
 
     @Column(name = "TITLE", length = 500, nullable = false)
     private String title;
@@ -23,8 +23,9 @@ public class Posts {
     @Column(name = "CONTENT", columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(name = "EMAIL")
-    private String email;
+    //Session Name
+    @Column(name = "NAME")
+    private String name;
 
     @Column(name = "SCORE")
     private int score;
@@ -43,12 +44,12 @@ public class Posts {
 
     @Builder
     public Posts(String title, String content,
-                 String email, int score,
+                 String name, int score,
                  LocalDate startDate, LocalTime startTime,
                  LocalDate endDate, LocalTime endTime) {
         this.title = title;
         this.content = content;
-        this.email = email;
+        this.name = name;
         this.score = score;
         this.startDate = startDate;
         this.startTime = startTime;
