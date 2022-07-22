@@ -8,11 +8,6 @@
         <h1 class="mt-4">일정 등록</h1>
 
         <form th:action="@{/calendar/register}" th:object="${postsSaveRequestDTO}" method="post">
-<!--            <div class="form-group">-->
-<!--                <label for="email">작성자</label>-->
-<!--                <input type="text" th:placeholder="${session.user.email}" th:value="${session.user.email}" class="form-control" id="email" name="email" readonly>-->
-<!--                <input type="text" th:placeholde="${session.principal.id}" th:value="${session.principal.id}" class="form-control" id="email" name="email" readonly>-->
-<!--            </div>-->
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" class="form-control" th:field="*{title}" id="title" placeholder="제목을 입력해주세요">

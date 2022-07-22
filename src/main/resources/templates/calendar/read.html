@@ -30,8 +30,10 @@
             <p><input type="time" th:value="${dto.endTime}" readonly></p>
         </div>
 
-        <button type="button" sec:authorize="isAuthenticated()" class="btn btn-success" id="btn-modify">수정</button>
-        <button type="button" sec:authorize="isAuthenticated()" class="btn btn-danger" id="btn-delete">삭제</button>
+        <div>
+            <a href="#" th:href="@{/calendar/update (pno=${dto.pno})}"
+               class="btn btn-success" id="btn-modify">수정</a>
+        </div>
 
         <script>
 
