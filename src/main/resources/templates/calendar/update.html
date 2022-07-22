@@ -5,35 +5,112 @@
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4">일정 상세 페이지</h1>
+        <h1 class="mt-4">일정 수정 페이지</h1>
 
-        <div class="form-group">
-            <label>제목</label>
-            <input type="text" class="form-control" th:value="${dto.title}" name="title">
-        </div>
-        <div class="form-group">
-            <label>내용</label>
-            <input type="text" class="form-control" th:value="${dto.content}" name="content">
-        </div>
-        <div class="form-group">
-            <label>중요도</label>
-            <input type="text" class="form-control" th:value="${dto.score}" name="score">
-        </div>
-        <div class="form-group">
-            <label>시작</label>
-            <p><input type="date" th:value="${dto.startDate}"></p>
-            <p><input type="time" th:value="${dto.startTime}"></p>
-        </div>
-        <div class="form-group">
-            <label>종료</label>
-            <p><input type="date" th:value="${dto.endDate}"></p>
-            <p><input type="time" th:value="${dto.endTime}"></p>
-        </div>
+        <form th:action="@{/calendar/register}" th:object="${dto}" method="post">
+            <div class="form-group">
+                <label>번호</label>
+                <input type="text" class="form-control" th:value="${pno}" th:field="*{pno}" readonly>
+            </div>
+            <div class="form-group">
+                <label>제목</label>
+                <input type="text" class="form-control" th:value="${title}" th:field="*{title}" id="title">
+            </div>
+            <div class="form-group">
+                <label>내용</label>
+                <input type="text" class="form-control" th:value="${content}" th:field="*{content}" id="content">
+            </div>
+            <div class="form-group">
+                <label>중요도</label>
+                <input type="text" class="form-control" th:value="${score}" th:field="*{score}" id="score">
+            </div>
+            <div class="form-group">
+                <label>시작</label>
+                <p><input type="date" th:value="${startDate}" th:field="*{startDate}"></p>
+                <p><input type="time" th:value="${startTime}" th:field="*{startTime}"></p>
+            </div>
+            <div class="form-group">
+                <label>종료</label>
+                <p><input type="date" th:value="${endDate}" th:field="*{endDate}"></p>
+                <p><input type="time" th:value="${endTime}" th:field="*{endTime}"></p>
+            </div>
+        </form>
 
-        <button type="button" class="btn btn-primary" id="btn-update">수정</button>
-        <button type="button" class="btn btn-danger" id="btn-cancel">취소</button>
+            <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
+            <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+            <a href="#" th:href="@{/calendar/read (pno=${dto.pno})}" class="btn btn-light" id="btn-cancel">취소</a>
 
         <script>
+
+            var main = {
+                init : function () {
+                    var _this = this;
+                    $('#btn-update').on('click', function (){
+                        _this.save();
+                    });
+
+                    $('#btn-delete').on('click', function(){
+                        _this.delete();
+                    })
+                },
+                save : function () {
+                    var data = {
+                        pno: $('#pno').val(),
+                        title: $('#title').val(),
+                        content: $('#content').val(),
+                        email: $('#email').val(),
+                        score: $('#score').val(),
+                        startDate: $('#startDate').val(),
+                        startTime: $('#startTime').val(),
+                        endDate: $('#endDate').val(),
+                        endTime: $('#endTime').val()
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/calendar/update',
+                        contentType:'application/json; charset=utf-8',
+                        data: JSON.stringify(data),
+                        success: function(result) {
+                            if (result) {
+                                alert("일정이 수정되었습니다.");
+                                window.location.href = '/';
+                            } else {
+                                alert("전송된 값 없음");
+                            }
+                        },
+                        error: function() {
+                            alert("에러 발생");
+                        }
+                    })
+                },
+
+                delete : function(){
+                    var data = {
+                        pno: $('#pno').val()
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/calendar/delete',
+                        contentType:'application/json; charset=utf-8',
+                        data: JSON.stringify(data),
+                        success: function(result) {
+                            if (result) {
+                                alert("일정이 삭제되었습니다.");
+                                window.location.href = '/';
+                            } else {
+                                alert("전송된 값 없음");
+                            }
+                        },
+                        error: function() {
+                            alert("에러 발생");
+                        }
+                    })
+                }
+            };
+
+            main.init();
 
 
         </script>

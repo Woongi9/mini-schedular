@@ -1,11 +1,14 @@
 package com.woongi9.scheduler.web.controller;
 
+import com.woongi9.scheduler.domain.posts.Posts;
+import com.woongi9.scheduler.domain.posts.PostsRepository;
 import com.woongi9.scheduler.domain.user.User;
 import com.woongi9.scheduler.domain.user.UserRepository;
 import com.woongi9.scheduler.service.posts.PostsService;
 import com.woongi9.scheduler.web.dto.PageRequestDTO;
 import com.woongi9.scheduler.web.dto.PostsResponseDTO;
 import com.woongi9.scheduler.web.dto.PostsSaveRequestDTO;
+import com.woongi9.scheduler.web.dto.PostsUpdateRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -28,8 +31,8 @@ import java.util.Optional;
 //@RestController
 public class CalendarController {
 
-    private final UserRepository userRepository;
     private final PostsService postsService;
+    private final PostsRepository postsRepository;
 
     @GetMapping("/timesort")
     public void timeSort(Model model,
@@ -85,7 +88,7 @@ public class CalendarController {
     public String  register(@RequestBody PostsSaveRequestDTO postDTO,
                             RedirectAttributes redirectAttributes,
                             Principal principal) {
-        log.info("postDTO : " + postDTO);
+        log.info("POST REGISTER postDTO : " + postDTO);
 
         postDTO.setName(principal.getName());
 
@@ -111,7 +114,7 @@ public class CalendarController {
     @GetMapping("/update")
     public void update(long pno,
                      Model model) {
-        log.info("update pno : " + pno);
+        log.info("GET update pno : " + pno);
 
         PostsResponseDTO postDTO = postsService.findById(pno);
 
@@ -119,8 +122,32 @@ public class CalendarController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody PostsSaveRequestDTO postDTO, RedirectAttributes redirectAttributes) {
+    public String update(@RequestBody PostsUpdateRequestDTO postDTO,
+                       RedirectAttributes redirectAttributes,
+                       Principal principal) {
+        log.info("POST UPDATE postDTO : " + postDTO);
 
+        long pno = postDTO.getPno();
+        postDTO.setName(principal.getName());
+
+        postsService.update(pno, postDTO);
+
+        log.info("PNO : " + pno);
+
+        redirectAttributes.addFlashAttribute("msg", pno);
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestBody PostsUpdateRequestDTO postDTO){
+
+        long pno = postDTO.getPno();
+        log.info("DELETE pno :" + pno);
+
+        postsService.delete(pno);
+
+        return "redirect:/";
     }
 
     @GetMapping("/calendar")
