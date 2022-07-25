@@ -13,23 +13,23 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = HelloController.class,
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
-                        classes = SecurityConfig.class)
-        })
+//@WebMvcTest(controllers = HelloController.class,
+//        excludeFilters = {
+//                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+//                        classes = SecurityConfig.class)
+//        })
 class HelloControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @WithMockUser(roles = "USER")
-    @Test
-    public void ReturnHello() throws Exception {
-        String hello = "hello";
-
-        mvc.perform(get("/hello"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(hello));
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @WithMockUser(roles = "USER")
+//    @Test
+//    public void ReturnHello() throws Exception {
+//        String hello = "hello";
+//
+//        mvc.perform(get("/hello"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(hello));
+//    }
 }
