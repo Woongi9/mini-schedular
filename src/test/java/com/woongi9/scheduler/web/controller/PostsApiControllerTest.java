@@ -76,7 +76,7 @@ class PostsApiControllerTest {
 //                .endDate(LocalDateTime.of(2022, 12, 31, 14, 0, 0))
                 .build());
 
-        Long updateId = savedPosts.getId();
+        Long updateId = savedPosts.getPno();
         String expectedTitle = "title2";
         String expectedContent = "content2";
         LocalDateTime expectedStartTime = LocalDateTime.of(2022, 7, 1, 12, 0, 0);

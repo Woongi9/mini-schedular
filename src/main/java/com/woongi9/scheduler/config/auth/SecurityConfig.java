@@ -20,26 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        http
-//                .csrf().disable()
-//                .headers().frameOptions().disable()
-//                .and()
-//                    .authorizeRequests()
-//                    .antMatchers("/", "/h2-consle/**", "/css/**", "/images/**"
-//                    , "js/**").permitAll()
-//                    .antMatchers("/calendar/timesort", "/calendar/prioritysort", "calendar/calendar",
-//                        "calendar/events", "calendar/register").hasRole(Role.USER.name())
-//                    .anyRequest().authenticated()
-//                .and()
-//                    .logout()
-//                        .logoutSuccessUrl("/")
-//                .and()
-//                    .oauth2Login()
-//                        .defaultSuccessUrl("/")
-//                        .userInfoEndpoint()
-//                        .userService(customOAuth2UserService);
-
-
         http.csrf().disable();
         http.headers().frameOptions().disable();
         http.authorizeRequests()
