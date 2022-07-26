@@ -16,5 +16,4 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
 
     @Query("SELECT p FROM Posts p WHERE p.endDate >= CURDATE() ORDER BY p.score DESC")
     List<Posts> findPriorityPage();
-
 }

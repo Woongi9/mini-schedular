@@ -46,7 +46,7 @@ public class CalendarController {
         List<PostsResponseDTO> timePosts = new ArrayList<>();
 
         for (PostsResponseDTO postDTO : prevPosts) {
-            log.info("postDTO Name :" + postDTO.getName());
+            log.info("postDTO Name :" + postDTO.getPno());
             if (name.equals(postDTO.getName()))
                 timePosts.add(postDTO);
         }
@@ -58,7 +58,7 @@ public class CalendarController {
     @GetMapping("/prioritysort")
     public void prioritySort(Model model,
                              Principal principal){
-        List<PostsResponseDTO> prevPosts = postsService.findTimesortPage();
+        List<PostsResponseDTO> prevPosts = postsService.findPriorityPage();
 
         //user = email 찾기
         String name = principal.getName();
@@ -67,12 +67,12 @@ public class CalendarController {
         List<PostsResponseDTO> priorityPosts = new ArrayList<>();
 
         for (PostsResponseDTO postDTO : prevPosts) {
-            log.info("postDTO Name :" + postDTO.getName());
+            log.info("postDTO Name :" + postDTO.getPno());
             if (name.equals(postDTO.getName()))
                 priorityPosts.add(postDTO);
         }
 
-        log.info("find TimeSort List : " + priorityPosts);
+        log.info("find Priority List : " + priorityPosts);
         model.addAttribute("result", priorityPosts);
     }
 
