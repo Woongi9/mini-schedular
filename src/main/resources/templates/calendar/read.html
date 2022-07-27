@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+<th:block th:replace="~{layout/basic :: setContent(~{this::content})}">
 
     <th:block th:fragment="content">
 
@@ -31,7 +31,7 @@
         </div>
 
         <div>
-            <a href="#" th:href="@{/calendar/update (pno=${dto.pno})}"
+            <a href="#" th:href="@{update (pno=${dto.pno})}"
                class="btn btn-success" id="btn-modify">수정</a>
         </div>
 
