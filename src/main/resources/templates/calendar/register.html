@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+<th:block th:replace="~{layout/basic :: setContent(~{this::content})}">
 
     <th:block th:fragment="content">
 
         <h1 class="mt-4">일정 등록</h1>
 
-        <form th:action="@{/calendar/register}" th:object="${postsSaveRequestDTO}" method="post">
+        <form th:action="@{calendar/register}" th:object="${postsSaveRequestDTO}" method="post">
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" class="form-control" th:field="*{title}" id="title" placeholder="제목을 입력해주세요">

@@ -14,7 +14,7 @@ import java.time.LocalTime;
 @Entity
 public class Posts {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pno;
 
     @Column(name = "TITLE", length = 500, nullable = false)

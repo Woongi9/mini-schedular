@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+<th:block th:replace="~{layout/basic :: setContent(~{this::content})}">
 
     <th:block th:fragment="content">
 
         <h1 class="mt-4">시간순 일정
             <span>
-                <a th:href="@{/calendar/register}">
+                <a th:href="@{calendar/register}">
                     <button type="button" class="btn btn-success">일정 등록</button>
                 </a>
             </span>
@@ -29,12 +29,12 @@
             <tbody>
             <tr th:each="dto : ${result}">
                 <th scope="row">
-                    <a th:href="@{/calendar/read(pno = ${dto.pno})}">
+                    <a th:href="@{calendar/read(pno = ${dto.pno})}">
                         [[${dto.pno}]]
                     </a>
                 </th>
                 <th scope="row">
-                    <a th:href="@{/calendar/read(pno = ${dto.pno})}">
+                    <a th:href="@{calendar/read(pno = ${dto.pno})}">
                         [[${dto.title}]]
                     </a>
                 </th>
