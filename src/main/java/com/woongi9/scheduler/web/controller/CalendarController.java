@@ -81,7 +81,7 @@ public class CalendarController {
 
         model.addAttribute("postsSaveRequestDTO", new PostsSaveRequestDTO());
 
-        return "register";
+        return "calendar/register";
     }
 
     @PostMapping("/register")
