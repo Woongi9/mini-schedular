@@ -16,7 +16,7 @@ cache:
 script: “./gradlew clean build”
 
 before_deploy:
-  - zip -r mini-scheduler-webservice
+  - zip -r mini-scheduler-webservice *
   - mkdir -p deploy
   - mv mini-scheduler-webservice.zip deploy/mini-scheduler-webservice.zip
 
