@@ -122,23 +122,43 @@
 ## <div id="화면">실행 화면</div>
 
 ### 1. 로그인 & 로그아웃
-#### 1.1 유저 로그인
-<br></br>
 
+![로그인 1](https://user-images.githubusercontent.com/79649052/181902743-4c45b071-f4ed-44c0-8602-434d87dedb28.gif)
 
-### 2. 영화 목록
+#### 1.1 로그인 없이 접근
 
-<br></br>
-
-### 3. 영화 등록
+![로그인 1-2](https://user-images.githubusercontent.com/79649052/181902736-7754110f-b774-4420-adc6-f32bee4a50ee.gif)
 
 <br></br>
 
-### 4. 영화 상세 페이지
+
+### 2. 일정 목록 출력
+
+#### 2.1 시간순 목록
+
+<img width="1273" alt="image" src="https://user-images.githubusercontent.com/79649052/181902777-68f2dd74-c10d-4178-b5b9-a2d929788625.png">
+
+#### 2.2 중요도순 목록
+
+<img width="1273" alt="image" src="https://user-images.githubusercontent.com/79649052/181902784-378bdfa3-4a78-4b16-aa6e-88592604ab93.png">
 
 <br></br>
 
-### 5. 리뷰 등록
+### 3. CRUD
+
+#### 3.1 일정 등록
+
+![Create](https://user-images.githubusercontent.com/79649052/181902892-8446fbe1-289d-4e0b-98a4-767bfde6541f.gif)
+
+#### 3.2 개별 일정 읽기
+
+#### 3.3 일정 수정
+
+#### 3.4 일정 삭제
+
+<br></br>
+
+### 4. Full-Calendar 달력 페이지
 
 <br></br>
 
