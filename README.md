@@ -19,15 +19,15 @@
     + [부트스트랩 사용](#핵심1)
     + [Full Calendar 오픈 소스 달력](#핵심2)
     + [JPA를 사용한 일정 CRUD 구현](#핵심3)
-    + [Spring Security와 소셜 로그인](#핵심4)
-    + [Thymeleaf를 통한 기능 구현](#핵심5)
-        + [세션 값 일정 등록시 자동 입력](#핵심5-1)
-        + [유저의 역할에 다른 구현](핵심5-2)
-    + [일정 엔티티와 세션 이름 매칭](#핵심6)
-    + [Query 문에 따른 다른 순서의 출력](#핵심7)
-    + [Junit Test](#핵심8)
-    + [AWS EC2 리눅스 환경](#핵심9)
-    + [AWS RDS에 DB 환경](#핵심10)
+    + [DTO 계층과 서비스 계층 구성](#핵심4)
+    + [Spring Security와 소셜 로그인](#핵심5)
+    + [Thymeleaf를 통한 기능 구현](#핵심6)
+        + [세션 값 일정 등록시 자동 입력](#핵심6-1)
+        + [유저의 역할에 다른 구현](핵심6-2)
+    + [일정 엔티티와 세션 이름 매칭](#핵심7)
+    + [Query 문에 따른 다른 순서의 출력](#핵심8)
+    + [Junit Test](#핵심9)
+    + [AWS EC2 리눅스 환경과 AWS RDS 환경](#핵심10)
     + [EC2 서버에 배포](#핵심11)
     + [Travis CI, AWS S3, AWS CodeDeploy 연동으로 배포 자동화](#핵심12)
 
@@ -77,6 +77,7 @@
 #### <div id="데베">DB</div>
 + h2
 + MySQL
++ AWS RDS
 
 #### <div id="프론트">프론트엔드</div>
 + Javascript
@@ -86,7 +87,7 @@
 + FullCalendar
 
 #### <div id="인프라">인프라</div>
-+ AWS EC2
++ AWS EC2 (Linux)
 + AWS RDS
 + AWS S3
 + AWS CodeDeploy
@@ -105,7 +106,7 @@
 * JPA 사용, Hibernate를 사용한 도메인 설계
 * Spring Security를 사용한 로그인 과정
 * 구글, 네이버 소셜 로그인 구현
-* Git, AWS EC2, RDS, S3, CodeDeploy, TravisCI를 이용한 인프라 구축
+* Git, AWS EC2, RDS, S3, CodeDeploy, TravisCI를 이용한 리눅스 기반 인프라 구축
 
 <br></br>
 
@@ -152,17 +153,35 @@
 
 #### 3.2 개별 일정 읽기
 
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903582-0f52ddf2-efd0-419b-824e-db4455b14c57.png">
+
 #### 3.3 일정 수정
 
+* 수정 전
+
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903675-1de831e4-15a8-42e3-8a75-799167505583.png">
+
+* 수정 후
+
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903693-3e42a97c-cd6b-40ac-822f-7cd6df4d3e61.png">
+
+
 #### 3.4 일정 삭제
+
+* 삭제 전
+
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903722-9b83ac88-16be-42df-8080-244e8c13b226.png">
+
+* 삭제 후
+
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903783-a737fd68-1462-4957-9b98-349b75184e84.png">
+
 
 <br></br>
 
 ### 4. Full-Calendar 달력 페이지
 
-<br></br>
-
-### 6. 리뷰 수정 & 삭제
+<img width="636" alt="image" src="https://user-images.githubusercontent.com/79649052/181903806-f07a734d-871d-4359-842d-eca67135628d.png">
 
 <br></br>
 
@@ -170,11 +189,15 @@
 
 ## <div id="아키텍처">시스템 아키텍처</div>
 
+<img width="696" alt="image" src="https://user-images.githubusercontent.com/79649052/181933563-8410a30e-411d-4d94-899b-51adba64667d.png">
+
 <br></br>
 
 ---
 
 ## <div id="다이어그램">클래스 다이어그램</div>
+
+<img width="691" alt="image" src="https://user-images.githubusercontent.com/79649052/181937303-0445214a-689f-4753-a106-8ced494fdb11.png">
 
 <br></br>
 
@@ -183,60 +206,151 @@
 
 ### <div id="핵심1">부트스트랩</div>
 
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903857-c2e1cfe3-8c17-47a7-8c99-addc6cf01f26.png">
+
+* 오픈 소스 부트스트랩을 사용하여 모바일 환경은 물론 태블릿 화면에서도 작동하는 반응형 웹 구현
+
 <br></br>
 
 ### <div id="핵심2">Full Calendar 오픈 소스 달력</div>
+
+<img width="638" alt="image" src="https://user-images.githubusercontent.com/79649052/181937344-d04b4cf9-8752-4f36-9ace-1a7a23bff7f6.png">
+
+* 오픈 소스 Full-Calendar를 사용하여 달력 화면 페이지 구현
 
 <br></br>
 
 ### <div id="핵심3">JPA를 사용한 일정 CRUD 구현</div>
 
-<br></br>
+<img width="603" alt="image" src="https://user-images.githubusercontent.com/79649052/182013088-a5776af0-e55c-428c-9a26-54eba4a40ee5.png">
+<img width="461" alt="image" src="https://user-images.githubusercontent.com/79649052/182013107-ecc474dd-031d-460b-880d-061509be20d5.png">
 
-### <div id="핵심4">Spring Security와 소셜 로그인</div>
+* JPA 엔티티로 생성한 Posts와 Users 엔티티와 JPA Repository를 통해 구현한 PostsRepository와 UserRepository
 
-<br></br>
+<img width="639" alt="image" src="https://user-images.githubusercontent.com/79649052/181903313-ee293aca-94ac-49c5-953d-57770376066c.png">
 
-### <div id="핵심5">Thymeleaf를 통한 기능 구현</div>
-
-#### <div id="핵심5-1">세션 값 일정 등록시 자동 입력</br>
-
-#### <div id="핵심5-2">유저의 역할에 다른 구현</br>
+* 위의 실행화면 3.1 일정 생성 직후 EC2 서버에서의 Create 이후 AWS RDS
 
 <br></br>
 
-### <div id="핵심6">일정 엔티티와 세션 이름 매칭</div>
+
+### <div id="핵심4">DTO 계층과 서비스 계층 구성</div>
+
+<img width="219" alt="image" src="https://user-images.githubusercontent.com/79649052/182013669-b2997995-a1a6-463a-a5cf-68ff78c5231a.png">
+<img width="219" alt="image" src="https://user-images.githubusercontent.com/79649052/182013678-e07c696f-2b74-4e7a-a987-63bdcdb3b749.png">
+
+* 화면에 전달하는 데이터이거나 화면 쪽에서 전달되는 데이터 기준으로 DTO 구성
+* 서비스 계층에는 기본적으로 DTO에서 Entity로 Entity에서 DTO로 하는 함수와 추가적으로 DTO를 파라미터로 받을 때의 검색, 삭제, 수정 등 필요 함수 구현
+
+### <div id="핵심5">Spring Security와 소셜 로그인</div>
+
+<img width="237" alt="image" src="https://user-images.githubusercontent.com/79649052/182014208-8cda1792-e798-4894-8e2b-f644f2a8bfbc.png">
+
+* OAuth2 인증방식을 사용
+
+* 회원가입이 되지 않은 경우는 OAuthAttributes 형식으로 구글과 네이버의 로그인 유저 정보를 받아 CustomOAuth2UserService의 loaduser 메서드에서 저장 후 Security의 DefaultOAuth2User로 리턴되면서 회원 정보를 전달
+
+* 회원가입이 된 회원인 경우 SaveOrUpdate 메서드에서 이메일 검색 가능시 Security의 DefaultOAuth2User로 리턴되면서 회원 정보를 전달
 
 <br></br>
 
-### <div id="핵심7">Query 문에 따른 다른 순서의 출력</div>
+### <div id="핵심6">Thymeleaf를 통한 기능 구현</div>
+
+<img width="378" alt="image" src="https://user-images.githubusercontent.com/79649052/182014350-70bf22e5-0592-47f9-8871-df14f7ffa335.png">
+
+
+* Timesort.html의 일정 리스트 정보 출력 부분
+* Controller에서 GetMapping시 Model로 전송된 DTO 정보를 출력
+
+#### <div id="핵심6-1">일정 등록</br>
+
+<img width="681" alt="image" src="https://user-images.githubusercontent.com/79649052/182014377-5662e5e0-a4ea-41c4-8eed-d1c4ae508ba3.png">
+
+* register.html의 POST 부분 Thymeleaf 사용
+
+#### <div id="핵심6-2">유저의 역할에 다른 구현</br>
+
+<img width="701" alt="image" src="https://user-images.githubusercontent.com/79649052/182014459-f0688a9f-0925-4dce-9864-f83381a415ee.png">
+
+* 로그인 여부에 따른 Navbar의 로그인, 로그아웃 표시 숨기기, 보이기
 
 <br></br>
 
-### <div id="핵심8">Junit Test</div>
+### <div id="핵심7">일정 엔티티와 세션 이름 매칭</div>
+
+<img width="537" alt="image" src="https://user-images.githubusercontent.com/79649052/182014434-c3eddf6a-fd32-4474-bfef-481dba164c33.png">
+
+* register.html의 POST 부분 이후 setName을 통한 Principal 세션 이름을 Posts의 Name 칼럼에 저장
 
 <br></br>
 
-### <div id="핵심9">AWS EC2 리눅스 환경</div>
+### <div id="핵심8">Query 문에 따른 다른 순서의 출력</div>
+
+<img width="691" alt="image" src="https://user-images.githubusercontent.com/79649052/182014533-9c6e888f-d3b3-4dd6-b7a4-9fed2923f494.png">
+
+* PostsRepository에 Query를 사용하는 시간순 일정 페이지, 중요도에 따른 페이지에 출력되는 일정들을 순서대로 리스트로 만드는 Query
+* endDate가 현재 날짜보다 과거인 경우는 출력 안함
 
 <br></br>
 
-### <div id="핵심10">AWS RDS에 DB 환경</div>
+### <div id="핵심9">Junit Test</div>
+
+<img width="252" alt="image" src="https://user-images.githubusercontent.com/79649052/182014619-a39e9ca0-651a-48db-9e64-680770529c6e.png">
+
+* 다양한 메서드의 기능을 Junit5 Test 코드를 통해 확인
+
+<br></br>
+
+### <div id="핵심10">AWS EC2 리눅스 환경과 AWS RDS 환경</div>
+
+<img width="279" alt="image" src="https://user-images.githubusercontent.com/79649052/182015247-391a6be8-1192-465c-a8cb-40c8b6141427.png">
+
+* EC2는 Amazon Linux 1 OS 인스턴스 사용
+
+<img width="425" alt="image" src="https://user-images.githubusercontent.com/79649052/182015228-db783bb7-5cf4-4eaa-85ae-df6102f2cb75.png">
+
+* RDS는 MySQL 사용하고, IntelliJ에 DB Browser 환경을 통해 콘솔 접근
 
 <br></br>
 
 
 ### <div id="핵심11">EC2 서버에 배포</div>
 
+<img width="418" alt="image" src="https://user-images.githubusercontent.com/79649052/182015372-b3424232-1ff6-4be5-9c7b-1936c6bbc39a.png">
+
+* EC2 내의 deploy.sh 파일로 배포 스크립트 저장
+
+<img width="1274" alt="image" src="https://user-images.githubusercontent.com/79649052/182015356-7b6d6e1a-a093-4524-8d44-f71c0493785b.png">
+
+* nohup.out 을 통해 배포 과정 로그 확인을 통해 오류 확인과 성공 여부 확인 가능
+
 <br></br>
 
 ### <div id="핵심12">Travis CI, AWS S3, AWS CodeDeploy 연동으로 배포 자동화</div>
+
+<img width="622" alt="image" src="https://user-images.githubusercontent.com/79649052/182014925-72e6481e-7b20-42c4-b1d4-003bf299dc97.png">
+
+* Travis CI의 빌드 성공 확인
+
+* Jenkins는 설치형이므로 EC2 인스턴스가 하나 더 필요하여 프리티어 유지를 위해 Travis CI 사용
+
+<img width="870" alt="image" src="https://user-images.githubusercontent.com/79649052/182014822-bdeb7761-6c84-4a64-8d95-69c7c53168a0.png">
+
+* AWS S3에 저장되어 있는 Travis CI에서 받은 jar 파일 zip 
+
+<img width="1095" alt="image" src="https://user-images.githubusercontent.com/79649052/182014782-316e6ce6-62d8-4b91-98e1-63329de2c8e7.png">
+
+* AWS CodeDeploy의 배포 내역에서의 성공
 
 <br></br>
 
 ---
 
 ## <div id="느낀점">프로젝트를 통해 느낀점</div>
+
+* 처음에 비하면 장족의 발전을 했다. 인프라와 관련된 기술도 다양하게 찾아보고 하다보니 배포까지 구현할 수 있었다. 하지만 아직까지 배포 중의 사이트가 끊겨 무중단 배포를 시도하려 했지만 EC2의 인스턴스가 하나 더 필요할 것 같아 프리티어 유저로서 할 수 없었다.
+* 아직까지도 처음 데이터 모델링 과정에서 확실하게 구현하지 못해 중간의 수정 과정을 거치는 경우가 많았다. 데이터 모델링을 좀 더 공부할 필요가 있을 것 같다. 그리고 JPA를 주로 사용하고 있기는 한데 편리하기는 하지만 과연 이게 왜 그렇게 까지 좋은 기술인지는 아직까지도 잘 모르겠다.
+* 이제 다른 프로젝트 또한 이번 프로젝트에서 사용했던 방법을 통해 배포와 무중단 배포 과정까지 시도할 생각이다.
 
 <br></br>
 
