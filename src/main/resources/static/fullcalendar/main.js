@@ -143,7 +143,6 @@ var FullCalendar = (function (exports) {
 
     // no public types yet. when there are, export from:
     // import {} from './api-type-deps'
-    var EventSourceApi = /** @class */ (function () {
         function EventSourceApi(context, internalEventSource) {
             this.context = context;
             this.internalEventSource = internalEventSource;

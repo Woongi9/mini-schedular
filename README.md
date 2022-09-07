@@ -16,7 +16,8 @@
 - [시스템 아키텍처](#아키텍처)
 - [클래스 다이어그램](#다이어그램)
 - [핵심 기능](#핵심)
-    + [부트스트랩 사용](#핵심1)
+    + [계층형 구조 아키텍처 설계](#핵심0)
+    + [부트스트랩을 사용한 웹 페이지](#핵심1)
     + [Full Calendar 오픈 소스 달력](#핵심2)
     + [JPA를 사용한 일정 CRUD 구현](#핵심3)
     + [DTO 계층과 서비스 계층 구성](#핵심4)
@@ -100,7 +101,7 @@
 
 ## <div id="주요">주요 내용</div>
 
-* 웹 애플리케이션 설계부터 구현, 배포까지 전과정
+* 웹 애플리케이션 계층형 아키텍처 설계부터 구현, 무중단 배포까지 전과정 경험
 * 오픈 소스 부트스트랩과 Full-Calendar 사용
 * MVC 프레임워크 기반 백엔드 서버 구축
 * JPA 사용, Hibernate를 사용한 도메인 설계
@@ -204,7 +205,23 @@
 ---
 ## <div id="핵심">핵심 기능</div>
 
-### <div id="핵심1">부트스트랩</div>
+### <div id="핵심0">계층형 구조 아키텍처 설계</div>
+
+<img width="319" alt="image" src="https://user-images.githubusercontent.com/79649052/188583339-85b16ac1-7963-43b0-806c-e0bdc4be69df.png">
+
+* **계층형 구조 사용**
+  * controller : 웹 계층
+  * service : 비즈니스 로직, 트랜잭션 처리
+  * repository : JPA를 직접 사용하는 계층, 엔티티 매니저 사용
+  * domain : 엔티티가 모여있는 계층, 모든 계층에서 사용
+
+_토비의 스프링 3계층 아키텍처 참고_
+
+[계층형 구조 블로그 정리](https://velog.io/@woongi9/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EA%B3%84%EC%B8%B5%ED%98%95-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98) 
+
+<br></br>
+
+### <div id="핵심1">부트스트랩을 사용한 웹 페이지</div>
 
 <img width="1280" alt="image" src="https://user-images.githubusercontent.com/79649052/181903857-c2e1cfe3-8c17-47a7-8c99-addc6cf01f26.png">
 
