@@ -7,11 +7,11 @@ jdk:
 #  only:
 #    - main
 
-### Travis CI 서버의 Home
-cache:
-  directories:
-    - ‘$HOME/.m2/repository’
-    - ‘$HOME/.gradle’
+#### Travis CI 서버의 Home
+#cache:
+#  directories:
+#    - ‘$HOME/.m2/repository’
+#    - ‘$HOME/.gradle’
 
 script: “./gradlew clean build”
 
@@ -50,6 +50,12 @@ deploy:
     wait-until-deployed: true
     on:
       all_branches: true
+
+### Travis CI 서버의 Home
+cache:
+  directories:
+    - ‘$HOME/.m2/repository’
+    - ‘$HOME/.gradle’
 
 
 ### CI 실행 완료시 메일로 알림
