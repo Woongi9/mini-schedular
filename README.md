@@ -31,12 +31,15 @@
     + [AWS EC2 리눅스 환경과 AWS RDS 환경](#핵심10)
     + [EC2 서버에 배포](#핵심11)
     + [Travis CI, AWS S3, AWS CodeDeploy 연동으로 배포 자동화](#핵심12)
+    + [AWS Route 53를 통해 도메인 DNS 서비스 등록](#13)
+    + [Nginx를 통한 무중단 배포 및 리버스 프록시 환경 구축](#핵심14)
 
 - [프로젝트를 통해 느낀점](#느낀점)
 
 ---
 ## <div id="목적">개발 목적</div>
 
+* ***평소 사용하던 정적인 순서에 스케줄러가 아닌 내가 원하는 칼럼 순으로 일정 목록이 다르게 생성될 수 있도록 하는 웹 페이지 설계 및 운영***  
 * 유저 별로 저장된 일정 기록, 수정, 삭제, 목록 페이지를 가지면서 Full-Calendar 사용으로 보기 편한 웹 페이지를 구현
 * Spring Boot와 Spring Security, Thymeleaf, JPA 등을 통한 웹 애플리케이션을 만들고, 만든 WAS를 항상 접근할 수 있게 AWS와 Travis CI를 활용해 인프라 구축 후 배포 과정 전개발 경험
 
@@ -93,6 +96,7 @@
 + AWS S3
 + AWS CodeDeploy
 + Travis CI
++ Nginx
 + Git
 
 <br></br>
@@ -102,12 +106,12 @@
 ## <div id="주요">주요 내용</div>
 
 * 웹 애플리케이션 계층형 아키텍처 설계부터 구현, 무중단 배포까지 전과정 경험
-* 오픈 소스 부트스트랩과 Full-Calendar 사용
+* 오픈 소스 부트스트랩과 Full-Calendar를 사용으로 기초적인 UI 제공
 * MVC 프레임워크 기반 백엔드 서버 구축
 * JPA 사용, Hibernate를 사용한 도메인 설계
 * Spring Security를 사용한 로그인 과정
 * 구글, 네이버 소셜 로그인 구현
-* Git, AWS EC2, RDS, S3, CodeDeploy, TravisCI를 이용한 리눅스 기반 인프라 구축
+* Git, AWS EC2, RDS, S3, CodeDeploy, TravisCI, Nginx, Docker를 이용한 리눅스 기반 리버스 프록시 인프라 구축
 
 <br></br>
 
@@ -190,7 +194,8 @@
 
 ## <div id="아키텍처">시스템 아키텍처</div>
 
-<img width="696" alt="image" src="https://user-images.githubusercontent.com/79649052/181933563-8410a30e-411d-4d94-899b-51adba64667d.png">
+<img width="482" alt="image" src="https://user-images.githubusercontent.com/79649052/188944769-bf68fdc5-7268-4be2-8654-5029c8968ea3.png">
+
 
 <br></br>
 
@@ -209,11 +214,7 @@
 
 <img width="319" alt="image" src="https://user-images.githubusercontent.com/79649052/188583339-85b16ac1-7963-43b0-806c-e0bdc4be69df.png">
 
-* **계층형 구조 사용**
-  * controller : 웹 계층
-  * service : 비즈니스 로직, 트랜잭션 처리
-  * repository : JPA를 직접 사용하는 계층, 엔티티 매니저 사용
-  * domain : 엔티티가 모여있는 계층, 모든 계층에서 사용
+* **구조를 바꾸는 경우 문제에 경우 전체를 수정하는게 아닌 적절한 객체에 책임을 할당하는 3계층 아키텍처가 적절하다고 판단** 
 
 _토비의 스프링 3계층 아키텍처 참고_
 
@@ -360,8 +361,31 @@ _토비의 스프링 3계층 아키텍처 참고_
 * AWS CodeDeploy의 배포 내역에서의 성공
 
 <br></br>
+---
+
+### <div id="핵심13">AWS Route 53를 통해 도메인 DNS 서비스 등록</div>
+
+<img width="710" alt="image" src="https://user-images.githubusercontent.com/79649052/188927538-4f41d73e-49e8-4f59-a9b2-cdb58579075c.png">
+
+* AWS Route 53에서 www.mini-scheduler.com 도메인 구매 기존의 가독성이 떨어진 EC2 인스턴스 주소를 DNS 서버를 통해 연결
+
+<br></br>
 
 ---
+
+### <div id="핵심14">Nginx를 통한 무중단 배포 및 리버스 프록시 환경 구축</div>
+
+<img width="542" alt="image" src="https://user-images.githubusercontent.com/79649052/188943936-c93cf828-9c17-45bd-8d30-55739ee90e39.png">
+
+_출처 : [엔진엑스를 사용한 무중단 배포](https://velog.io/@hwana/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8%EC%99%80-AWS%EB%A1%9C-%ED%98%BC%EC%9E%90-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-%EC%9B%B9-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%97%94%EC%A7%84%EC%97%91%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EB%AC%B4%EC%A4%91%EB%8B%A8-%EB%B0%B0%ED%8F%AC)_
+
+* 배포할 시에 서버가 접속이 안되는 문제를 해결하기 위해 웹 서버, 리버스 프록시, 캐싱, 로드 밸런싱 등을 위한 오픈소스 소프트웨어 Nginx를 사용해 리버스 프록시 무중단 배포 환경 설정
+* 9월 8일 현재 Travis CI credit 문제로 빌드 안되는 문제(결제 비용 문제)
+
+<br></br>
+
+---
+
 
 ## <div id="느낀점">프로젝트를 통해 느낀점</div>
 
