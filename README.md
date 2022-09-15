@@ -31,7 +31,7 @@
     + [AWS EC2 리눅스 환경과 AWS RDS 환경](#핵심10)
     + [EC2 서버에 배포](#핵심11)
     + [Travis CI, AWS S3, AWS CodeDeploy 연동으로 배포 자동화](#핵심12)
-    + [AWS Route 53를 통해 도메인 DNS 서비스 등록](#13)
+    + [AWS Route 53를 통해 도메인 DNS 서비스 등록](#핵심13)
     + [Nginx를 통한 무중단 배포 및 리버스 프록시 환경 구축](#핵심14)
 
 - [프로젝트를 통해 느낀점](#느낀점)
@@ -105,13 +105,14 @@
 
 ## <div id="주요">주요 내용</div>
 
-* 웹 애플리케이션 계층형 아키텍처 설계부터 구현, 무중단 배포까지 전과정 경험
+* 웹 애플리케이션 [계층형 아키텍처](https://velog.io/@woongi9/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EA%B3%84%EC%B8%B5%ED%98%95-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98) 설계부터 구현, 무중단 배포까지 전과정 경험
 * 오픈 소스 부트스트랩과 Full-Calendar를 사용으로 기초적인 UI 제공
 * MVC 프레임워크 기반 백엔드 서버 구축
-* JPA 사용, Hibernate를 사용한 도메인 설계
-* Spring Security를 사용한 로그인 과정
+* [JPA 사용, Hibernate](https://velog.io/@woongi9/JPA%EC%99%80-ORM-%EC%86%8C%EA%B0%9C)를 사용한 도메인 설계
+* [Spring Security를 사용한 로그인 과정](https://velog.io/@woongi9/%EC%8A%A4%ED%94%84%EB%A7%81-Spring-Security-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B3%BC%EC%A0%95-%EC%84%A4%EB%AA%85%ED%9A%8C)
 * 구글, 네이버 소셜 로그인 구현
-* Git, AWS EC2, RDS, S3, CodeDeploy, TravisCI, Nginx, Docker를 이용한 리눅스 기반 리버스 프록시 인프라 구축
+* Git, AWS EC2, RDS, S3, CodeDeploy, TravisCI, Nginx, Docker를 이용한 리눅스 기반 [리버스 프록시](https://velog.io/@woongi9/%ED%8F%AC%EC%9B%8C%EB%93%9C-%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80-%EB%A6%AC%EB%B2%84%EC%8A%A4-%ED%94%84%EB%A1%9D%EC%8B%9C-%EA%B0%9C%EB%85%90) 인프라 구축
+
 
 <br></br>
 
